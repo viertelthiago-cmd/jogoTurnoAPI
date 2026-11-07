@@ -7,11 +7,11 @@ class Database {
 
     init() {
         this.db = new Sequelize({
-            database: "JogoTurnoAPI",
-            host : "localhost",
-            username : "root",
-            dialect : "mysql",
-            password : ''
+            dialect: 'mysql',
+            database: 'jogoTurnoAPI',
+            host: 'localhost',
+            username: 'root',
+            password: ''
         })
     }
 }

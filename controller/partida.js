@@ -1,22 +1,23 @@
-import ServiceJogo from '../service/jogo.js'
+import partida from '../model/partida.js'
+import ServicePartida from '../service/partida.js'
 
-class Controllerjogo {
+class Controllerpartida {
     
-    Buscar(req, res) {
+    async Buscar(req, res) {
         try {
-            const jogo = await ServiceJogo.Buscar()
+            const partida = await ServicePartida.Buscar()
 
-            res.status(200).send({ jogo })
+            res.status(200).send({ partida })
         } catch (error) {
-            resizeTo.status(500).send({ message: error.message })
+            res.status(500).send({ message: error.message })
         }
     }
     async Buscarum(req, res) {
         try {
             const id = req.params.id
-            const jogo = await ServiceJogo.Buscarum(id)
+            const partida = await ServicePartida.Buscarum(id)
 
-            res.status(200).send({ jogo })
+            res.status(200).send({ partida })
         } catch (error) {
             res.status(500).send({ message: error.message })
         }
@@ -25,7 +26,7 @@ class Controllerjogo {
         try {
             const { descricao, data, vencedor } = req.body
 
-            await Servicejogo.Criar(descricao, data, vencedor)
+            await ServicePartida.Criar(descricao, data, vencedor)
 
             res.status(201).send({ message: "jogo criado com sucesso" })
         } catch (error) {
@@ -37,9 +38,9 @@ class Controllerjogo {
             const id = req.params.id
             const {descricao, data, vencedor } = req.body
 
-            await Servicejogo.Alterar(id, descricao, data, vencedor)
+            await ServicePartida.Alterar(id, descricao, data, vencedor)
 
-            res.status(200).send({ message: "jogo alterado com sucesso"})
+            res.status(200).send({ message: "partida alterado com sucesso"})
         } catch (error) {
             res.status(500).send({ message: error.message })
         }
@@ -48,9 +49,9 @@ class Controllerjogo {
         try {
             const id = req.params.id
 
-            await Servicejogo.Deletar(id)
+            await ServicePartida.Deletar(id)
 
-            res.status(200).send({ message: "jogo deletado "})
+            res.status(200).send({ message: "partida deletado "})
         } catch (error) {
             res.status(500).send({ message: error.message })
         }
@@ -58,4 +59,4 @@ class Controllerjogo {
 
 
 }
-export default new CrollerUser
+export default new Controllerpartida
